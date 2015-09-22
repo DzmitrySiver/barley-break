@@ -18,18 +18,38 @@
 		element.style.top = coords.y * TILE_SIZE + "px";
 	}
 
-	for (var i = 0; i < 15; i++) {
-		var tile = document.createElement('div');
-
-		tile.innerHTML = i;
-		tile.className = "tile tile_" + i;
-
-		var coords = getCoords(i);
-
-		setPosition(tile, coords);
-
-		gameWrapper.appendChild(tile);
+	function getPosition(element) {
+		var coords = {};
+		coords.x = parseInt(element.style.left);
+		coords.y = parseInt(element.style.top);
+		return coords;
 	}
 
+	function init() {
+		for (var i = 0; i < 15; i++) {
+			var tile = document.createElement('div');
+
+			tile.innerHTML = i;
+			tile.className = "tile tile_" + i;
+
+			var coords = getCoords(i);
+
+			setPosition(tile, coords);
+
+			game.appendChild(tile);
+		}
+
+		game.addEventListener("click", function() {
+			var target = event.target; // ??? ??? ?????
+			if (target.className == 'tile') {
+
+			}
+
+		})
+	}
+
+	var game = document.getElementById("gameWrapper");
+
+	init();
 
 })();
