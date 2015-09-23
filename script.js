@@ -12,55 +12,60 @@
 	}
 
 	function setPosition(element, coords) {
-
 		element.style.left = coords.x * TILE_SIZE + "px";
 		element.style.top = coords.y * TILE_SIZE + "px";
 	}
 
 	function getPosition(element) {
-		var coords = {};
-		coords.x = parseInt(element.style.left);
-		coords.y = parseInt(element.style.top);
-		return coords;
+		var position = {};
+		position.x = parseInt(element.style.left);
+		position.y = parseInt(element.style.top);
+		return position;
 	}
 
-	function getEmptyCoords() {
-		var coords = {};
-		coords.x = parseInt(empty.style.left);
-		coords.y = parseInt(empty.style.top);
-		return coords;
+	function getEmptyPosition() {
+		var position = {};
+		position.x = parseInt(empty.style.left);
+		position.y = parseInt(empty.style.top);
+		return position;
 	}
 
-	function isMovable(coords, emptyCoords) {
-		if (( Math.abs(coords.x - emptyCoords.x) == 100 && Math.abs(coords.y - emptyCoords.y) == 0 ) ||
-			( Math.abs(coords.x - emptyCoords.x) == 0 && Math.abs(coords.y - emptyCoords.y) == 100 )) {
+	function isMovable(position, emptyPosition) {
+		if (( Math.abs(position.x - emptyPosition.x) == TILE_SIZE && Math.abs(position.y - emptyPosition.y) == 0 ) ||
+			( Math.abs(position.x - emptyPosition.x) == 0 && Math.abs(position.y - emptyPosition.y) == TILE_SIZE )) {
 			return true;
 		}
-		return false;
 	}
 
 	function moveTile(element) {
-		var coords = getPosition(element);
-		var emptyCoords = getEmptyCoords();
+		var position = getPosition(element);
+		var emptyPosition = getEmptyPosition();
 		var temp;
-		if (isMovable(coords, emptyCoords)) {
-			temp = coords;
-			element.style.top = emptyCoords.y + "px";
-			element.style.left = emptyCoords.x + "px";
+		if (isMovable(position, emptyPosition)) {
+			temp = position;
+			element.style.top = emptyPosition.y + "px";
+			element.style.left = emptyPosition.x + "px";
 			empty.style.top = temp.y + "px";
 			empty.style.left = temp.x + "px";
 		}
 	}
 
+	function getRandomId() {
+		var rand = Math.floor(Math.random() * availableIds.length);
+		return availableIds.splice(rand, 1);
+	}
+
 	function init() {
 		var tile;
 		var coords;
-
 		for (var i = 0; i < 15; i++) {
+			availableIds.push(i);
+		}
+		for (i = 0; i < 15; i++) {
 			tile = document.createElement('div');
-			tile.innerHTML = i;
+			tile.innerHTML = i + 1;
 			tile.className = "tile tile_" + i;
-			coords = getCoords(i);
+			coords = getCoords(getRandomId());
 			setPosition(tile, coords);
 			game.appendChild(tile);
 		}
@@ -81,6 +86,7 @@
 	}
 
 	var game = document.getElementById("gameWrapper"),
+		availableIds = [];
 		TILE_SIZE = 100;
 
 	init();

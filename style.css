@@ -30,6 +30,12 @@ body {
 }
 
 .tile {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 800;
+	font-size: 40px;
+	text-shadow: 1px 1px 0 #fff;
+	color: #666;
+
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -64,4 +70,5 @@ body {
 
 .tile:hover {
 	background-color: #eee;
+	color: #777;
 }
