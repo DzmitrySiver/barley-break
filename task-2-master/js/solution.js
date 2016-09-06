@@ -73,7 +73,7 @@
         } else if (waysLength == 1) {
 
             // move the only way
-            move(ways[0], ways[1]);
+            pathFinder(ways[0], ways[1]);
 
         } else {
 

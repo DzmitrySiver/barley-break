@@ -7,23 +7,30 @@
 	var ROWS = 4,
 		COLS = 4;
 
-	function initArray(numbers) {
-		shuffle(numbers);
-		var arr = new Array(ROWS);
+	function initArray(numbersArray) {
+		
+		var gameField;
+
+		shuffle(numbersArray);
+
+		gameField = new Array(ROWS);
 
 		for (var i = 0; i < 4; i++) {
-			arr[i] = new Array(COLS);
+			gameField[i] = new Array(COLS);
 			for (var j = 0; j < 4; j++) {
-				arr[i][j] = numbers.pop() || 0;
+				gameField[i][j] = numbersArray.pop() || 0;
 			}
 		}
+
 		console.log(arr);
 	}
 
 	function shuffle(array) {
-		var currentIndex = array.length, temporaryValue, randomIndex ;
+		var currentIndex = array.length,
+			temporaryValue,
+			randomIndex;
 
-		while (0 !== currentIndex) {
+		while (currentIndex !== 0) {
 
 			randomIndex = Math.floor(Math.random() * currentIndex);
 			currentIndex--;
@@ -36,12 +43,16 @@
 		return array;
 	}
 
-	function createNumbers() {
-		var numbers = [];
-		for (var i = 0; i < ROWS*COLS - 1; i++) {
-			numbers.push(i+1);
+	function createNumbersArray() {
+		var numbersArray = [];
+
+		for (var i = 1; i < (ROWS * COLS); i++) {
+			numbersArray.push(i);
 		}
-		initArray(numbers);
+
+		debugger;
+
+		initArray(numbersArray);
 
 		//var tile = document.createElement('div');
 		//		tile.innerHTML = i + 1;
@@ -51,7 +62,7 @@
 		//		game.appendChild(tile);
 	}
 
-	createNumbers();
+	createNumbersArray();
 
 
 })();
