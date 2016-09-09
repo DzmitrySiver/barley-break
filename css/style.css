@@ -20,6 +20,7 @@ body {
 	margin: 0 auto;
 	background-color: #a5a6a7;
 	position: relative;
+	overflow: hidden;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -45,6 +46,9 @@ body {
 	box-sizing: border-box;
 
 	background-color: #ddd;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
 
 	border: 5px solid;
 	border-top-color: #fff;
@@ -64,11 +68,27 @@ body {
 	position: absolute;
 	cursor: pointer;
 
-	transition: all 0.2s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 .tile.active {
-	background-color: red;
+	background-color: #70b752;
+	border-top-color: #9aec77;
+	border-bottom-color: #5d9048;
+	border-left-color: #82d260;
+	border-right-color: #6aab4e;
+}
+
+.sword {
+	background-image: url('../img/Sword-96.png');
+}
+
+.shield {
+	background-image: url('../img/Shield-96.png');
+}
+
+.skull {
+	background-image: url('../img/Poison-96.png');
 }
 
 .lazy-loaded {
